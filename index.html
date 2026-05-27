@@ -1,436 +1,246 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>周薪个人简历</title>
-    <style>
-        /* CSS 变量定义 - 方便后期统一调整 */
-        :root {
-            --primary-blue: #4a90d9;
-            --light-blue: #f5faff;
-            --medium-blue: #d6e4f0;
-            --accent-blue: #b3d9ff;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --white: #ffffff;
-            --shadow: 0 2px 8px rgba(160,196,232,0.3);
-            --border: 1px solid #d6e4f0;
-            --radius: 8px;
-            --max-width: 800px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小王个人简历</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --card-bg: #f5faff;
+    --card-border: #d6e4f0;
+    --card-shadow: 0 2px 8px rgba(160,196,232,0.3);
+    --accent: #b3d9ff;
+    --text: #333333;
+    --heading-font: 'SimHei', '黑体', sans-serif;
+    --body-font: 'Microsoft YaHei', '微软雅黑', sans-serif;
+    --max-width: 800px;
+  }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'SimHei', '黑体', sans-serif;
-            background-color: var(--white);
-            color: var(--text-dark);
-            line-height: 1.6;
-            padding: 20px;
-        }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body-font);
+    line-height: 1.8;
+  }
 
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            background-color: var(--white);
-        }
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+  }
 
-        /* 标题样式 */
-        h1 {
-            font-family: 'SimHei', '黑体', sans-serif;
-            text-align: center;
-            color: var(--text-dark);
-            font-size: 32px;
-            padding: 30px 0;
-            margin-bottom: 30px;
-            border-bottom: 3px solid var(--accent-blue);
-        }
+  /* 网站标题 */
+  h1 {
+    text-align: center;
+    font-family: var(--heading-font);
+    font-size: 28px;
+    padding: 24px 0 30px;
+    color: var(--text);
+  }
 
-        /* 模块卡片样式 */
-        .section {
-            background-color: var(--light-blue);
-            border: var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 25px;
-            margin-bottom: 25px;
-        }
+  /* 模块卡片 */
+  .section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+  }
 
-        .section-title {
-            font-size: 20px;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid var(--accent-blue);
-            font-weight: bold;
-        }
+  .section h2 {
+    font-family: var(--heading-font);
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 16px;
+    color: var(--text);
+  }
 
-        .subsection-title {
-            font-size: 17px;
-            color: var(--text-dark);
-            margin-top: 18px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
+  .section h3 {
+    font-family: var(--heading-font);
+    font-size: 15px;
+    margin: 12px 0 8px;
+    color: var(--text);
+  }
 
-        /* 基本信息布局 */
-        .basic-info {
-            display: flex;
-            gap: 25px;
-            align-items: flex-start;
-        }
+  /* 基本信息：左文右图 */
+  .basic-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .basic-info .info-left { flex: 1; }
+  .basic-info .info-left p { margin-bottom: 6px; }
+  .basic-info .info-right { flex-shrink: 0; }
+  .basic-info .info-right img {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
 
-        .info-text {
-            flex: 1;
-        }
+  /* 经历条目 */
+  .exp-item { margin-bottom: 14px; }
+  .exp-item .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+  .exp-item .exp-header strong { font-size: 15px; }
+  .exp-item .exp-header span { color: #888; font-size: 13px; }
+  .exp-item p { font-size: 14px; color: #555; margin-top: 2px; }
 
-        .photo-placeholder {
-            flex-shrink: 0;
-        }
+  /* 技能证书四栏网格 */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .skills-grid .skill-item {
+    background: var(--bg);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    text-align: center;
+    font-size: 14px;
+  }
 
-        .photo-placeholder img {
-            width: 150px;
-            height: 200px;
-            object-fit: cover;
-            border: 2px solid var(--medium-blue);
-            border-radius: 4px;
-        }
+  /* 荣誉奖项 ★ 列表 */
+  .award-list { list-style: none; }
+  .award-list li { margin-bottom: 6px; font-size: 14px; }
+  .award-list li::before { content: '★ '; color: #f0a030; }
 
-        /* 信息行样式 */
-        .info-row {
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
+  /* 自我评价 */
+  .self-eval {
+    text-indent: 2em;
+    text-align: justify;
+    font-size: 14px;
+    color: #555;
+  }
 
-        .info-label {
-            display: inline-block;
-            width: 90px;
-            font-weight: bold;
-            color: var(--text-dark);
-        }
-
-        /* 列表样式 */
-        .item {
-            margin-bottom: 18px;
-            padding-left: 15px;
-            border-left: 3px solid var(--accent-blue);
-        }
-
-        .item-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--text-dark);
-            margin-bottom: 6px;
-        }
-
-        .item-meta {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 8px;
-        }
-
-        .item-desc {
-            font-size: 14px;
-            color: var(--text-dark);
-            line-height: 1.8;
-        }
-
-        .item-desc li {
-            margin-bottom: 5px;
-            margin-left: 15px;
-        }
-
-        /* 技能证书网格 */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        .skill-category {
-            background-color: var(--white);
-            padding: 12px;
-            border-radius: 4px;
-            border: 1px solid var(--medium-blue);
-        }
-
-        .skill-category-title {
-            font-weight: bold;
-            color: var(--primary-blue);
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-
-        .skill-category-content {
-            font-size: 13px;
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        /* 荣誉列表 */
-        .honor-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .honor-list li {
-            padding: 8px 0;
-            padding-left: 20px;
-            position: relative;
-            font-size: 14px;
-            border-bottom: 1px solid var(--medium-blue);
-        }
-
-        .honor-list li:last-child {
-            border-bottom: none;
-        }
-
-        .honor-list li:before {
-            content: "★";
-            position: absolute;
-            left: 0;
-            color: var(--primary-blue);
-        }
-
-        /* 自我评价 */
-        .self-evaluation {
-            font-size: 14px;
-            color: var(--text-dark);
-            line-height: 2;
-            text-align: justify;
-            text-indent: 2em;
-        }
-
-        /* 分割线 */
-        .divider {
-            height: 1px;
-            background-color: var(--accent-blue);
-            margin: 15px 0;
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 600px) {
-            .basic-info {
-                flex-direction: column-reverse;
-                align-items: center;
-            }
-
-            .info-label {
-                width: 70px;
-            }
-
-            h1 {
-                font-size: 26px;
-            }
-
-            .section {
-                padding: 18px;
-            }
-        }
-    </style>
+  /* 响应式 */
+  @media (max-width: 600px) {
+    .container { padding: 16px 12px 40px; }
+    h1 { font-size: 24px; padding: 16px 0 20px; }
+    .section { padding: 16px 14px; }
+    .basic-info { flex-direction: column; align-items: center; }
+    .basic-info .info-right img { width: 120px; height: 160px; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .exp-item .exp-header { flex-direction: column; }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- 网站标题 -->
-        <h1>周薪个人简历</h1>
 
-        <!-- 一、基本信息 -->
-        <div class="section">
-            <div class="section-title">一、基本信息</div>
-            <div class="basic-info">
-                <div class="info-text">
-                    <div class="info-row">
-                        <span class="info-label"><!-- 姓名 -->姓名：</span>张三
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 性别 -->性别：</span>女
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 出生年月 -->出生年月：</span>2000年09月
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 政治面貌 -->政治面貌：</span>中共党员
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 学历 -->学历：</span>硕士研究生（在读）
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 就读院校 -->就读院校：</span>XX理工大学
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 专业 -->专业：</span>管理科学与工程
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 研究方向 -->研究方向：</span>数据分析、运营管理、数字经济
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 联系电话 -->联系电话：</span>136XXXX6688
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 邮箱 -->邮箱：</span>liyichen@email.com
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label"><!-- 求职意向 -->求职意向：</span>数据分析、运营管理、项目管理、职能岗、选调生、国企综合管理
-                    </div>
-                </div>
-                <div class="photo-placeholder">
-                    <!-- 替换为个人照片：<img src="photo.png" alt="张三"> -->
-                    <img src="photo.png" alt="个人照片">
-                </div>
-            </div>
-        </div>
+<div class="container">
 
-        <!-- 二、教育经历 -->
-        <div class="section">
-            <div class="section-title">二、教育经历</div>
-            
-            <div class="subsection-title"><!-- 硕士阶段 -->硕士阶段</div>
-            <div class="item">
-                <div class="item-meta">2022.09 – 2025.06 | <!-- 硕士院校 -->XX理工大学 | 管理科学与工程 | 硕士研究生</div>
-                <ul class="item-desc">
-                    <li><!-- 硕士排名 -->专业排名前10%，综合成绩优异</li>
-                    <li><!-- 硕士课程 -->主修课程：数据分析与建模、运筹优化、项目管理、大数据管理、计量经济学</li>
-                    <li><!-- 硕士荣誉 -->在校荣誉：校级一等奖学金、优秀研究生、优秀学生干部</li>
-                </ul>
-            </div>
+  <!-- ========== 网站标题 ========== -->
+  <h1>小王个人简历</h1> <!-- 标题 -->
 
-            <div class="subsection-title"><!-- 本科阶段 -->本科阶段</div>
-            <div class="item">
-                <div class="item-meta">2018.09 – 2022.06 | <!-- 本科院校 -->XX财经大学 | 工商管理 | 本科</div>
-                <ul class="item-desc">
-                    <li><!-- 本科GPA -->GPA：3.7/4.0，多次获得校级奖学金、三好学生</li>
-                </ul>
-            </div>
-        </div>
+  <!-- ========== 一、基本信息 ========== -->
+  <div class="section">
+    <h2>基本信息</h2>
+    <div class="basic-info">
 
-        <!-- 三、科研经历 -->
-        <div class="section">
-            <div class="section-title">三、科研经历</div>
-            
-            <div class="item">
-                <div class="item-title">省级科研创新项目《数字化转型背景下中小企业效率优化研究》</div>
-                <div class="item-meta"><!-- 科研项目1角色 -->项目角色：核心成员 | <!-- 科研项目1时间 -->时间：2023.03 – 2024.12</div>
-                <ul class="item-desc">
-                    <li><!-- 科研项目1职责1 -->负责文献梳理、数据收集与实证分析，使用 Python、SPSS 完成数据清洗与统计建模</li>
-                    <li><!-- 科研项目1职责2 -->参与撰写项目结题报告，优化研究模型，提升研究可信度</li>
-                    <li><!-- 科研项目1成果 -->项目顺利结题，成果应用于校级展示</li>
-                </ul>
-            </div>
+      <div class="info-left">
+        <p><strong>姓名：</strong>小王</p> <!-- 姓名 -->
+        <p><strong>性别：</strong>男</p> <!-- 性别 -->
+        <p><strong>出生年月：</strong>2002年12月</p> <!-- 出生年月 -->
+        <p><strong>政治面貌：</strong>中共党员</p> <!-- 政治面貌 -->
+        <p><strong>学历：</strong>硕士研究生</p> <!-- 学历 -->
+        <p><strong>院校：</strong>北京大学</p> <!-- 院校 -->
+        <p><strong>专业：</strong>人工智能</p> <!-- 专业 -->
+        <p><strong>联系电话：</strong>12222222222</p> <!-- 电话 -->
+        <p><strong>电子邮箱：</strong>1792222222@qq.com</p> <!-- 邮箱 -->
+        <p><strong>求职意向：</strong>教师</p> <!-- 求职意向 -->
+      </div>
 
-            <div class="item">
-                <div class="item-title">校级研究生创新课题《基于大数据的城市营商环境评价研究》</div>
-                <div class="item-meta"><!-- 科研项目2角色 -->项目角色：负责人 | <!-- 科研项目2时间 -->时间：2022.10 – 2023.09</div>
-                <ul class="item-desc">
-                    <li><!-- 科研项目2职责1 -->独立设计研究框架，构建评价指标体系，完成问卷调研与数据建模</li>
-                    <li><!-- 科研项目2职责2 -->撰写完整研究论文1篇，参与校内学术论坛汇报</li>
-                    <li><!-- 科研项目2成果 -->锻炼了数据分析、逻辑建模、报告撰写与课题统筹能力</li>
-                </ul>
-            </div>
+      <div class="info-right">
+        <!-- 替换为个人照片：<img src="photo.png" alt="小王"> -->
+        <img src="photo.png" alt="小王"> <!-- 个人照片 -->
+      </div>
 
-            <!-- 学术论文子标题 -->
-            <div class="subsection-title">学术论文</div>
-            <div class="item">
-                <div class="item-desc">
-                    <!-- 添加发表的论文题目、期刊、年份等信息 -->
-                    <p style="color: #999; font-style: italic;">（待补充论文信息）</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 四、实习经历 -->
-        <div class="section">
-            <div class="section-title">四、实习经历</div>
-            
-            <div class="item">
-                <div class="item-title"><!-- 实习公司1 -->XX国企集团 综合管理部 管理岗实习</div>
-                <div class="item-meta"><!-- 实习时间1 -->时间：2024.06 – 2024.09</div>
-                <ul class="item-desc">
-                    <li><!-- 实习职责1-1 -->协助部门日常行政、材料撰写与会议纪要整理，累计完成公文、汇报材料 30+ 份</li>
-                    <li><!-- 实习职责1-2 -->负责数据统计、台账整理与资料归档，优化表格体系，提升工作效率</li>
-                    <li><!-- 实习职责1-3 -->协助完成年度工作总结、专项报告与评优材料整理，获得领导书面表扬</li>
-                </ul>
-            </div>
-
-            <div class="item">
-                <div class="item-title"><!-- 实习公司2 -->XX互联网科技公司 运营分析实习生</div>
-                <div class="item-meta"><!-- 实习时间2 -->时间：2023.07 – 2023.09</div>
-                <ul class="item-desc">
-                    <li><!-- 实习职责2-1 -->负责日常业务数据整理、数据监控与周报月报输出，熟练使用 Excel、SQL</li>
-                    <li><!-- 实习职责2-2 -->分析用户行为与业务指标，协助完成活动复盘与优化建议</li>
-                    <li><!-- 实习职责2-3 -->协助运营团队完成内容整理、用户维护与活动落地，熟悉互联网运营全流程</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 五、校园工作经历 -->
-        <div class="section">
-            <div class="section-title">五、校园工作经历</div>
-            
-            <div class="item">
-                <div class="item-title"><!-- 校园工作1 -->研究生学生会组织部部长 (2022.09 – 2024.06)</div>
-                <ul class="item-desc">
-                    <li><!-- 校园工作职责1-1 -->统筹党建活动、主题党日、团员教育等，累计组织活动 40 余场</li>
-                    <li><!-- 校园工作职责1-2 -->负责材料审核、档案整理与信息统计，工作零失误</li>
-                    <li><!-- 校园工作职责1-3 -->锻炼了较强的沟通协调、统筹管理与公文写作能力</li>
-                </ul>
-            </div>
-
-            <div class="item">
-                <div class="item-title"><!-- 校园工作2 -->班级研究生班长 (2022.09 – 至今)</div>
-                <ul class="item-desc">
-                    <li><!-- 校园工作职责2-1 -->负责班级日常管理、通知传达、评奖评优与学风建设</li>
-                    <li><!-- 校园工作职责2-2 -->协助辅导员完成年级管理工作，班级获评"优秀班集体"</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 六、技能证书 -->
-        <div class="section">
-            <div class="section-title">六、技能证书</div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="skill-category-title"><!-- 语言能力 -->语言能力</div>
-                    <div class="skill-category-content">大学英语六级、普通话二级甲等</div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-category-title"><!-- 办公技能 -->办公技能</div>
-                    <div class="skill-category-content">熟练使用 Office 全套、Excel 高级函数、PPT 汇报制作、公文写作</div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-category-title"><!-- 数据分析技能 -->数据分析</div>
-                    <div class="skill-category-content">熟练 Python、SPSS、SQL，具备数据清洗、建模与统计分析能力</div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-category-title"><!-- 其他证书 -->其他证书</div>
-                    <div class="skill-category-content">计算机二级、初级会计资格证</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 七、荣誉奖项 -->
-        <div class="section">
-            <div class="section-title">七、荣誉奖项</div>
-            <ul class="honor-list">
-                <li><!-- 荣誉1 -->校级一等奖学金（研究生阶段）</li>
-                <li><!-- 荣誉2 -->优秀研究生干部、优秀共青团干部</li>
-                <li><!-- 荣誉3 -->校级三好学生、学业优秀奖学金（本科阶段）</li>
-                <li><!-- 荣誉4 -->校级学术论坛优秀汇报奖</li>
-            </ul>
-        </div>
-
-        <!-- 八、自我评价 -->
-        <div class="section">
-            <div class="section-title">八、自我评价</div>
-            <div class="self-evaluation"><!-- 自我评价内容 -->
-                本人为全日制在读硕士研究生，中共党员，学习成绩优异，科研基础扎实，具备良好的数据分析、逻辑建模和文字撰写能力。在校长期担任学生干部，责任心强、执行力高，熟悉公文写作、材料整理、团队统筹等工作。拥有国企、互联网双重实习经历，工作踏实细致、适应力强、沟通协调能力突出，作风严谨、可塑性强。具备优秀的学习能力、抗压能力和团队协作能力，愿意快速投入岗位工作，稳定踏实、长期发展。
-            </div>
-        </div>
     </div>
+  </div>
+
+  <!-- ========== 二、教育经历 ========== -->
+  <div class="section">
+    <h2>教育经历</h2>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <strong>北京大学</strong> <!-- 学校 -->
+        <span>2020 — 2024</span> <!-- 时间 -->
+      </div>
+      <p>人工智能 · 本科</p> <!-- 专业/学位 -->
+    </div>
+
+  </div>
+
+  <!-- ========== 三、科研经历 ========== -->
+  <div class="section">
+    <h2>科研经历</h2>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <strong>大模型应用</strong> <!-- 项目名称 -->
+        <span>2020</span> <!-- 时间 -->
+      </div>
+      <p>负责人 · 市级项目</p> <!-- 角色/级别 -->
+    </div>
+
+    <h3>学术论文</h3> <!-- 学术论文子标题 -->
+    <p style="color:#999;font-size:14px;">（待补充）</p> <!-- 论文留空 -->
+  </div>
+
+  <!-- ========== 四、实习经历 ========== -->
+  <div class="section">
+    <h2>实习经历</h2>
+    <p style="color:#999;font-size:14px;">暂无实习经历</p> <!-- 实习经历 -->
+  </div>
+
+  <!-- ========== 五、校园工作经历 ========== -->
+  <div class="section">
+    <h2>校园工作经历</h2>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <strong>班级班长</strong> <!-- 职务 -->
+        <span>2020</span> <!-- 时间 -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========== 六、技能证书 ========== -->
+  <div class="section">
+    <h2>技能证书</h2>
+    <div class="skills-grid">
+      <div class="skill-item">大学英语四级 CET-4</div> <!-- 四级英语证书 -->
+    </div>
+  </div>
+
+  <!-- ========== 七、荣誉奖项 ========== -->
+  <div class="section">
+    <h2>荣誉奖项</h2>
+    <ul class="award-list">
+      <li>校园三等奖</li> <!-- 校园三等奖 -->
+    </ul>
+  </div>
+
+  <!-- ========== 八、自我评价 ========== -->
+  <div class="section">
+    <h2>自我评价</h2>
+    <p class="self-eval">（待补充）</p> <!-- 自我评价留空 -->
+  </div>
+
+</div>
+
 </body>
 </html>
